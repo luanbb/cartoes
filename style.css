@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b0082; 
+    perspective: 2000px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.bola-laranja {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.deck-paginas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 240px;
+    z-index: 2;
+    transform: translate(-50%, -50%); 
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.pagina {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    background: white;
+    backface-visibility: hidden;
+}
+
+.pagina h3, .pagina p {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+/* --- Estado Inicial --- */
+.p1 { z-index: 5; transform: rotateX(55deg) rotateZ(-40deg) translateZ(60px); }
+.p2 { z-index: 4; background: rgba(255, 255, 255, 0.7); transform: rotateX(55deg) rotateZ(-40deg) translateZ(30px); }
+.p3 { z-index: 3; background: rgba(255, 255, 255, 0.4); transform: rotateX(55deg) rotateZ(-40deg) translateZ(0px); }
+
+/* --- Cores dos Títulos (Preto, Azul e Grená) --- */
+.p1 h3 { color: #000000; } /* Preto */
+.p2 h3 { color: #0000FF; } /* Azul */
+.p3 h3 { color: #800000; } /* Grená */
+
+/* --- Estado Hover (Aumentamos o translateX para dar mais espaço) --- */
+.deck-paginas:hover .pagina {
+    background: white;
+    opacity: 1;
+}
+
+.deck-paginas:hover h3, .deck-paginas:hover p {
+    opacity: 1;
+}
+
+/* Aumentei de 130% para 160% para afastar mais as cartas */
+.deck-paginas:hover .p1 {
+    transform: rotateX(0deg) rotateZ(0deg) translateZ(200px) translateX(-160%) scale(1.3);
+}
+
+.deck-paginas:hover .p2 {
+    transform: rotateX(0deg) rotateZ(0deg) translateZ(200px) translateX(0%) scale(1.3);
+}
+
+.deck-paginas:hover .p3 {
+    transform: rotateX(0deg) rotateZ(0deg) translateZ(200px) translateX(160%) scale(1.3);
+}
+
+/* Estilização básica */
+h3 { font-size: 16px; margin-bottom: 5px; font-weight: bold; }
+p { font-size: 12px; color: #444; line-height: 1.4; margin: 0; }
